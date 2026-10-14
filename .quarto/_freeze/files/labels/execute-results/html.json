@@ -1,0 +1,15 @@
+{
+  "hash": "03c2fc39c0b640cc03739875a47fe54d",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Experimental Label\"\nformat:\n  html:\n    toc: true\n    toc-expand: true\n    toc-depth: 4\n    toc-location: left\n    number-sections: true\n    self-contained: true\n    code-fold: false\neditor_options: \n  chunk_output_type: console\nexecute: \n  warning: false\n  message: false\n  echo: true\n---\n\n# Setup\n\n\n::: {.cell}\n\n```{.r .cell-code}\nsource(\"https://inkaverse.com/setup.r\")\n```\n:::\n\n\n# Field-book\n\n\n::: {.cell}\n\n```{.r .cell-code}\ngs <- \"url\" %>% \n  as_sheets_id()\n\nfb <- gs %>% \n  range_read(ss = .,sheet = \"fb\")\n\n#> Google fonts: https://fonts.google.com/\n\nfont <- c(\"Merriweather Sans\", \"Permanent Marker\", \"Tillana\")\nhuito_fonts(font)\n```\n:::\n\n\n# Labels \n\n\n::: {.cell}\n\n```{.r .cell-code}\nlabel <- fb %>%\n  label_layout(size = c(5.2, 10)\n               , border_color = \"forestgreen\"\n               , border_width = 1.5\n               ) %>%\n  include_image(\n    value = \"https://doctoradofisica.uni.edu.pe/wp-content/uploads/2024/01/d123d3.webp\"\n    , size = c(3, 3)\n    , position = c(1.6, 9.5)\n    ) %>% \n  include_image(\n    value = \"https://huito.inkaverse.com/img/scale.pdf\"\n    , size = c(5, 1)\n    , position = c(2.6, 8.5)\n    ) %>% \n  include_barcode(\n    value = \"qrcode\"\n    , size = c(5, 5)\n    , position = c(2.6, 5.5)\n    ) %>% \n  include_text(value = \"plots\"\n               , position = c(4.4, 9.5)\n               , size = 16\n               , color = \"black\"\n               , font = font[3]\n               ) %>% \n  include_text(value = \"factor1\"\n               , position = c(2.6, 2.6)\n               , size = 16\n               , color = \"blue\"\n               , font = font[1]\n               , prefix = \"Factor: \"\n               ) %>% \n  include_text(value = \"factor2\"\n               , position = c(2.6, 1.8)\n               , size = 15\n               , color = \"red\"\n               , font = font[1]\n               , prefix = \"Factor: \"\n               ) %>% \n  include_image(\n    value = \"https://huito.inkaverse.com/img/scale.pdf\"\n    , size = c(5, 1)\n    , position = c(2.6, 0.9)\n    , opts = 'image_convert(type = \"Grayscale\")'\n    ) \n\nlabel %>% label_print(mode = \"preview\")\n```\n:::\n\n\n# Labels to print\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlabel %>% \n  label_print(mode = \"complete\"\n              , filename = \"files/labels\"\n              # , paper = c(100, 100)\n              , units = \"cm\"\n              )\n```\n:::\n\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
